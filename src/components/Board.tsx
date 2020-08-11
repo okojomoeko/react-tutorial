@@ -3,6 +3,7 @@ import Square from './Square';
 
 export default function Board() {
   const [squares, setSquares] = React.useState(Array(9).fill(null));
+  const [xIsNext, setIsNext] = React.useState(true);
 
   function renderSquare(i: number) {
     return <Square value={squares[i]} onClick={() => handleClick(i)}></Square>
@@ -10,11 +11,12 @@ export default function Board() {
 
   function handleClick(i: number) {
     const _squares = squares.slice();
-    _squares[i] = 'X';
+    _squares[i] = xIsNext ? 'X' : 'O';
     setSquares(_squares);
+    setIsNext(!xIsNext);
   }
 
-  const status = 'Next player: X';
+  const status = `Next player: ${xIsNext ? 'X' : 'O'}`;
 
   return (
     <div>
