@@ -2,8 +2,16 @@ import React from 'react'
 import Square from './Square';
 
 export default function Board() {
+  const [squares, setSquares] = React.useState(Array(9).fill(null));
+
   function renderSquare(i: number) {
-    return <Square value={i}></Square>
+    return <Square value={squares[i]} onClick={() => handleClick(i)}></Square>
+  }
+
+  function handleClick(i: number) {
+    const _squares = squares.slice();
+    _squares[i] = 'X';
+    setSquares(_squares);
   }
 
   const status = 'Next player: X';

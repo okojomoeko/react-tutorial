@@ -4,8 +4,8 @@ export default function Square(props: any) {
   const [state, setState] = React.useState("");
 
   return (
-    <button className="square" onClick={() => setState('X')}>
-      {state}
+    <button className="square" onClick={() => props.onClick()}>
+      {props.value}
     </button>
   );
 }
