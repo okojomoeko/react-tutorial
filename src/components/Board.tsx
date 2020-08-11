@@ -3,7 +3,7 @@ import Square from './Square';
 
 export default function Board() {
   function renderSquare(i: number) {
-    return <Square></Square>
+    return <Square value={i}></Square>
   }
 
   const status = 'Next player: X';
