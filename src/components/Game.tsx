@@ -14,7 +14,7 @@ export default function Game() {
     const _history = history.slice(0, stepNumber + 1);
     const current = _history[_history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (calculateWinner(squares)?.winner || squares[i]) {
       return;
     }
     const col = i % 3;
@@ -37,8 +37,8 @@ export default function Game() {
   const current = _history[stepNumber];
   const winner = calculateWinner(current.squares);
   let status;
-  if (winner) {
-    status = "Winner: " + winner;
+  if (winner?.winner) {
+    status = "Winner: " + winner.winner;
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
@@ -69,6 +69,7 @@ export default function Game() {
           onClick={(i: number) => {
             handleClick(i);
           }}
+          play={winner?.play}
         />
       </div>
       <div className="sort-button">

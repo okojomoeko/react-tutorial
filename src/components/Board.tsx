@@ -1,12 +1,22 @@
 import React from 'react'
 import Square from './Square';
 import calculateWinner from '../controller/calculateWinner'
+import { isUndefined } from 'util';
 
 export default function Board(props: any) {
 
 
   function renderSquare(i: number) {
-    return <Square key={i} value={props.squares[i]} onClick={() => props.onClick(i)}></Square>
+    let square = <Square key={i} value={props.squares[i]} onClick={() => props.onClick(i)} style={{ background: "white" }}></Square>;
+    if (!isUndefined(props.play)) {
+      props.play.forEach((e: number) => {
+        if (e === i) {
+          square = <Square key={i} value={props.squares[i]} onClick={() => props.onClick(i)} style={{ background: "salmon" }}></Square>;
+        }
+      });
+    }
+
+    return square
   }
 
 
