@@ -39,8 +39,11 @@ export default function Game() {
   let status;
   if (winner?.winner) {
     status = "Winner: " + winner.winner;
-  } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+  } else if (current.squares.every((value) => value !== null)) {
+    status = 'Draw!!!';
+  }
+  else {
+    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
 
   const moves = _history.map((step, move) => {
