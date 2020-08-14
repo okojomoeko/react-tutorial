@@ -8,6 +8,7 @@ export default function Game() {
     { squares: Array(9).fill(null), moveLoc: { col: 0, row: 0 } },
   ]);
   const [stepNumber, setStepNumber] = React.useState(0);
+  const [moveIsAsc, setMoveSort] = React.useState(true);
 
   function handleClick(i: number) {
     const _history = history.slice(0, stepNumber + 1);
@@ -55,6 +56,11 @@ export default function Game() {
       </li>
     );
   });
+
+  function handleSortMove() {
+    setMoveSort(!moveIsAsc);
+    console.log(moveIsAsc)
+  }
   return (
     <div className="game">
       <div className="game-board">
@@ -65,9 +71,12 @@ export default function Game() {
           }}
         />
       </div>
+      <div className="sort-button">
+        <button onClick={handleSortMove}>Sort Move</button>
+      </div>
       <div className="game-info">
         <div>{status}</div>
-        <ol>{moves}</ol>
+        {moveIsAsc ? <ol>{moves}</ol> : <ol>{moves.reverse()}</ol>}
       </div>
     </div>
   );
