@@ -43,12 +43,15 @@ export default function Game() {
   }
 
   const moves = _history.map((step, move) => {
-    const desc = move
+
+    let desc = move
       ? `Go to move #${move} (col: ${history[move].moveLoc.col} row: ${history[move].moveLoc.row})`
       : "Go to game start";
+
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{desc}</button>
+        <button onClick={() => jumpTo(move)}>{stepNumber === move ? <strong>{desc}</strong> : desc}</button>
+
       </li>
     );
   });
