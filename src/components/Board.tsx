@@ -6,28 +6,32 @@ export default function Board(props: any) {
 
 
   function renderSquare(i: number) {
-    return <Square value={props.squares[i]} onClick={() => props.onClick(i)}></Square>
+    return <Square key={i} value={props.squares[i]} onClick={() => props.onClick(i)}></Square>
   }
 
 
+  const renderSquares = (() => {
+    let rows = [];
 
+    for (let i = 0; i < 3; i++) {
+      let row = []
+      for (let j = 0; j < 3; j++) {
+        row.push(renderSquare(i * 3 + j))
+
+      }
+      rows.push(
+        <div key={i} className="board-row">
+          {row}
+        </div>
+      );
+    }
+    return rows;
+  })();
   return (
+
     <div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
+      {renderSquares}
+
     </div>
   );
 }
